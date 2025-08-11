@@ -10,6 +10,8 @@
 - Reload animation and progress
 - Custom UI showing remaining cartridges
 
+## [Preview](https://streamable.com/92wtf0)
+
 # Install
 Add taser cartridges to ox_inventory
 ```lua
