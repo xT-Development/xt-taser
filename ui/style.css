@@ -1,0 +1,39 @@
+:root{
+    --bg:#0b0d10cc;
+    --fg:#eaf2ff;
+    --ok:#22c55e;
+    --dim:#2a2f36;
+}
+
+html,body{
+    margin: 0;
+    background: transparent
+}
+
+#taser-wrap{
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    font-family: sans-serif;
+    pointer-events: none
+}
+
+.card{
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    background: var(--bg);
+    color: var(--fg);
+    padding: 6px 10px;
+    border-radius: 8px;
+}
+
+.slot{
+    width: 1vw;
+    height: 1.1vh;
+    border-radius: 3px;
+    background: var(--dim);
+}
+.slot.on{ background: var(--ok) }
+
+.hidden{ display: none }
