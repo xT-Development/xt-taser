@@ -3,6 +3,7 @@ local config = lib.require('config')
 local taserInfo = {}
 local showReloadUI = false
 local reloading = false
+local showCartridgeUI = false
 
 -- listen for reload input and show UI
 local function waitForReloadInput()
@@ -76,10 +77,15 @@ end)
 -- listen for current weapon and update stun gun
 AddEventHandler('ox_inventory:currentWeapon', function(weapon)
     local isStunGun = weapon and (weapon.name == 'WEAPON_STUNGUN') or false
-    if not isStunGun and taserInfo then
-        taserInfo = nil
+    if (not weapon or not isStunGun) then -- weapon is not a stun gun, reset info
+        if taserInfo then
+            taserInfo = nil
+        end
 
-        SendNUIMessage({ action = 'taser:toggle', state = false })
+        if showCartridgeUI then -- disable stun gun cartridge UI
+            showCartridgeUI = false
+            SendNUIMessage({ action = 'taser:toggle', state = false })
+        end
         return
     end
 
@@ -91,8 +97,12 @@ AddEventHandler('ox_inventory:currentWeapon', function(weapon)
         remainingCartridges = remainingCartridges
     }
 
-    -- update UI
-    SendNUIMessage({ action = 'taser:toggle', state = true })
+    -- update/show UI
+    if not showCartridgeUI then
+        showCartridgeUI = true
+        SendNUIMessage({ action = 'taser:toggle', state = true })
+    end
+
     SendNUIMessage({ action = 'taser:update', count = remainingCartridges })
 
     -- wait for weapon to cache
