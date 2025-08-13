@@ -1,39 +1,55 @@
-:root{
-    --bg:#0b0d10cc;
-    --fg:#eaf2ff;
-    --ok:#22c55e;
-    --dim:#2a2f36;
+:root {
+    --bg: #0b0d10cc;
+    --fg: #eaf2ff;
+    --ok: #22c55e;
+    --dim: #2a2f36;
+    --taser-yellow: #ffcc00;
+    --taser-black: #1a1a1a;
 }
 
-html,body{
+html, body {
     margin: 0;
-    background: transparent
+    background: transparent;
 }
 
-#taser-wrap{
+#taser-wrap {
     position: fixed;
-    right: 20px;
-    bottom: 20px;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
     font-family: sans-serif;
-    pointer-events: none
+    pointer-events: none;
 }
 
-.card{
+.card {
     display: flex;
     gap: 6px;
     align-items: center;
-    background: var(--bg);
+    padding: 8px 14px;
+    border-radius: 10px;
+    background: repeating-linear-gradient(
+        45deg,
+        var(--taser-yellow),
+        var(--taser-yellow) 10px,
+        var(--taser-black) 10px,
+        var(--taser-black) 20px
+    );
     color: var(--fg);
-    padding: 6px 10px;
-    border-radius: 8px;
+    border: 2px solid var(--taser-black);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
 }
 
-.slot{
-    width: 1vw;
-    height: 1.1vh;
+.slot {
+    width: 12px;
+    height: 20px;
     border-radius: 3px;
     background: var(--dim);
+    border: 1px solid #000;
 }
-.slot.on{ background: var(--ok) }
+.slot.on {
+    background: var(--ok);
+}
 
-.hidden{ display: none }
+.hidden {
+    display: none;
+}
